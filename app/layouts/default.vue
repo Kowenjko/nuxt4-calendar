@@ -6,7 +6,7 @@
 			<SignInButton />
 		</SignedOut>
 		<SignedIn>
-			<UserButton />
+			<UserButton afterSignOutUrl="/login" />
 		</SignedIn>
 	</header>
 	<main>
