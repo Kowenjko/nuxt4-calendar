@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nuxt": "1.8.9",
+    "@clerk/themes": "^2.4.14",
     "@nuxt/image": "1.11.0",
     "@nuxtjs/tailwindcss": "6.14.0",
     "nuxt": "^4.0.3",

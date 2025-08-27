@@ -6,10 +6,10 @@
 			<SignInButton />
 		</SignedOut>
 		<SignedIn>
-			<UserButton afterSignOutUrl="/login" />
+			<UserButton />
 		</SignedIn>
 	</header>
-	<main>
+	<main class="flex justify-center items-center p-10 gap-24 animate-fade-in max-md:flex-col">
 		<slot />
 	</main>
 </template>
