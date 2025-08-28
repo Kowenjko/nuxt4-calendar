@@ -1,22 +1,30 @@
 {
-  "name": "nuxt-app",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@clerk/nuxt": "1.8.9",
-    "@clerk/themes": "^2.4.14",
-    "@nuxt/image": "1.11.0",
-    "@nuxtjs/tailwindcss": "6.14.0",
-    "nuxt": "^4.0.3",
-    "vue": "^3.5.18",
-    "vue-router": "^4.5.1"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+	"name": "nuxt-app",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio"
+	},
+	"dependencies": {
+		"@clerk/nuxt": "1.8.9",
+		"@clerk/themes": "^2.4.14",
+		"@neondatabase/serverless": "^1.0.1",
+		"@nuxt/image": "1.11.0",
+		"@nuxtjs/tailwindcss": "6.14.0",
+		"drizzle-orm": "^0.44.5",
+		"nuxt": "^4.0.3",
+		"vue": "^3.5.18",
+		"vue-router": "^4.5.1"
+	},
+	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+	"devDependencies": {
+		"drizzle-kit": "^0.31.4"
+	}
 }
