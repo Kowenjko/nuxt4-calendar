@@ -1,4 +1,4 @@
-const isProtectedRoute = createRouteMatcher(['/events'])
+const isProtectedRoute = createRouteMatcher(['/', '/login', '/register', '/book'])
 
 export default defineNuxtRouteMiddleware((to) => {
 	const { userId } = useAuth()
