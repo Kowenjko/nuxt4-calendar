@@ -11,7 +11,7 @@ export const DAYS_OF_WEEK_IN_ORDER = [
 export const PrivateNavLinks = [
 	{
 		imgURL: '/svg/events.svg',
-		route: './events',
+		route: '/events',
 		label: 'My Events',
 	},
 	{
