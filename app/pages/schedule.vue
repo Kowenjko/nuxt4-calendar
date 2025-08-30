@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-	<h1>My Schedules Page</h1>
+	<h1 class="text-center">My Schedules Page</h1>
 </template>

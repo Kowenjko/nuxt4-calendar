@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-	<h1>My book Page</h1>
+	<h1 class="text-center">My book Page</h1>
 </template>

@@ -8,7 +8,7 @@ definePageMeta({
 
 <template>
 	<section>
-		<div class="flex gap-4 items-baseline">
+		<div class="flex justify-center gap-4 items-baseline">
 			<h1 class="text-4xl xl:text-5xl font-black mb-6">Events</h1>
 
 			<Button

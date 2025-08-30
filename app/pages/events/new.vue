@@ -11,9 +11,7 @@ definePageMeta({
 		</CardHeader>
 
 		<CardContent>
-			<!-- <EventForm /> -->
-
-			Event Form
+			<FormsEvent />
 		</CardContent>
 	</Card>
 </template>
