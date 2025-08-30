@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card'
-
 definePageMeta({
 	middleware: 'auth',
 })

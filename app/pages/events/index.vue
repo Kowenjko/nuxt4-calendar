@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { Button } from '../../../components/ui/button'
-
-import { CalendarPlus, CalendarRange } from 'lucide-vue-next'
+import { CalendarPlus } from 'lucide-vue-next'
 
 definePageMeta({
 	middleware: 'auth',

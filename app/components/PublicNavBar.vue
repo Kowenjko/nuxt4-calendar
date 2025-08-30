@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { Button } from '../../components/ui/button'
-</script>
+<script setup lang="ts"></script>
 
 <template>
 	<nav class="flex justify-between items-center fixed z-50 w-full h-28 bg-gray-300 px-10 gap-4 shadow-2xl">
