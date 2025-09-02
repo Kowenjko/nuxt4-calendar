@@ -1,9 +1,9 @@
 export default defineEventHandler(async (event) => {
-	const { clerkUserId } = await readBody(event)
+	const { userId } = event.context.auth()
 
 	try {
 		const events = await db.query.EventTable.findMany({
-			where: ({ clerkUserId: userIdCol }, { eq }) => eq(userIdCol, clerkUserId),
+			where: ({ clerkUserId: userIdCol }, { eq }) => eq(userIdCol, userId!),
 			orderBy: ({ name }, { asc, sql }) => asc(sql`lower(${name})`),
 		})
 

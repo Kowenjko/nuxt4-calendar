@@ -1,7 +1,20 @@
 import { toast } from 'vue-sonner'
 
 export const useEvents = () => {
-	const events = ref([])
+	const events = ref<any>([])
+
+	const getEvents = async () => {
+		try {
+			const response = await $fetch('/api/events')
+
+			events.value = response?.data || []
+
+			toast(response?.message!)
+		} catch (error) {
+			//@ts-ignore
+			toast(error?.statusMessage)
+		}
+	}
 
 	const createEvent = async (values: any) => {
 		try {
@@ -52,5 +65,5 @@ export const useEvents = () => {
 		}
 	}
 
-	return { createEvent, updateEvent, deleteEvent, events }
+	return { createEvent, updateEvent, deleteEvent, events, getEvents }
 }

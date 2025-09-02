@@ -1,8 +1,14 @@
 <script lang="ts" setup>
 import { CalendarPlus } from 'lucide-vue-next'
 
+const { events, getEvents } = useEvents()
+
 definePageMeta({
 	middleware: 'auth',
+})
+
+onMounted(async () => {
+	await getEvents()
 })
 </script>
 
