@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
-import { toast } from 'vue-sonner'
 
 import { toTypedSchema } from '@vee-validate/zod'
 
@@ -32,44 +31,16 @@ const form = useForm({
 		  },
 })
 
+const { createEvent, updateEvent, deleteEvent } = useEvents()
+
 const onSubmit = form.handleSubmit(async (values) => {
-	try {
-		if (!event) {
-			const response = await $fetch('/api/events', {
-				method: 'POST',
-				body: values,
-			})
+	!event ? await createEvent(values) : await updateEvent(event.id, values)
 
-			toast('Event has been created', {
-				description: response?.message,
-			})
-		} else {
-			const response = await $fetch(`/api/events`, {
-				method: 'PUT',
-				body: { data: values, id: event.id },
-			})
-
-			toast('Event has been updated', {
-				description: response?.message,
-			})
-		}
-
-		navigateTo('/events')
-	} catch (error: any) {}
+	navigateTo('/events')
 })
 
 const deleteEventSubmit = async () => {
-	try {
-		const response = await $fetch(`/api/events`, {
-			method: 'DELETE',
-			body: { id: event?.id },
-		})
-
-		toast('Event has been delete', {
-			description: response?.message,
-		})
-		navigateTo('/events')
-	} catch (error) {}
+	await deleteEvent(event!.id)
 }
 </script>
 
