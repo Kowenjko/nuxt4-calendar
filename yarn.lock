@@ -1177,7 +1177,7 @@
   optionalDependencies:
     ipx "^2.1.1"
 
-"@nuxt/kit@4.0.3":
+"@nuxt/kit@4.0.3", "@nuxt/kit@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-4.0.3.tgz#da6211aaab3f02996ef18bfd9abc0580867b2ead"
   integrity sha512-9+lwvP4n8KhO91azoebO0o39smESGzEV4HU6nef9HIFyt04YwlVMY37Pk63GgZn0WhWVjyPWcQWs0rUdZUYcPw==
@@ -1232,7 +1232,7 @@
     unimport "^5.2.0"
     untyped "^2.0.0"
 
-"@nuxt/schema@4.0.3":
+"@nuxt/schema@4.0.3", "@nuxt/schema@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-4.0.3.tgz#5dd0a288214f6acdaa1d45352153c44a4888f3b7"
   integrity sha512-acDigyy8tF8xDCMFee00mt5u2kE5Qx5Y34ButBlibLzhguQjc+6f6FpMGdieN07oahjpegWIQG66yQywjw+sKw==
@@ -7288,6 +7288,15 @@ vue-router@^4.5.1:
   integrity sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==
   dependencies:
     "@vue/devtools-api" "^6.6.4"
+
+vue-sonner@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/vue-sonner/-/vue-sonner-2.0.8.tgz#3ed56b59d8960bca9c31b597bae480ad93269fd6"
+  integrity sha512-NpBJu0VvToXIegdaVlg8Sl3jm325fNQ45OJW0LCNbZqdypcYkQRIqSmT+LV+0BX9fGg+SFjwkD2MFYwWW5oOaQ==
+  dependencies:
+    "@nuxt/kit" "^4.0.3"
+    "@nuxt/schema" "^4.0.3"
+    nuxt "^4.0.3"
 
 vue@^3.5.13:
   version "3.5.20"

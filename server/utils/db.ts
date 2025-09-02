@@ -11,3 +11,5 @@ const sql = neon(process.env.DATABASE_URL!)
 
 // Create and export the Drizzle ORM instance, with the Neon client and schema for type-safe queries
 export const db = drizzle(sql, { schema })
+
+export { and, eq, or } from 'drizzle-orm'

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
+import { toast } from 'vue-sonner'
 
-import { eventFormSchema } from '~/utils/schema/events'
+import { toTypedSchema } from '@vee-validate/zod'
 
 interface Props {
 	event?: {
@@ -16,7 +17,7 @@ interface Props {
 const { event } = defineProps<Props>()
 
 const form = useForm({
-	validationSchema: eventFormSchema, // Validate with Zod schema
+	validationSchema: toTypedSchema(eventFormSchema), // Validate with Zod schema
 	initialValues: event
 		? {
 				// If `event` is provided (edit mode), spread its existing properties as default values
@@ -32,21 +33,41 @@ const form = useForm({
 })
 
 const onSubmit = form.handleSubmit(async (values) => {
-	// const action = event == null ? createEvent : updateEvent.bind(null, event.id)
-	// try {
-	// 	await action(values)
-	// 	navigateTo
-	// } catch (error: any) {
-	// 	// Handle any error that occurs during the action (e.g., network error)
-	// 	form.setError('root', {
-	// 		message: `There was an error saving your event ${error.message}`,
-	// 	})
-	// }
+	try {
+		if (!event) {
+			const response = await $fetch('/api/events', {
+				method: 'POST',
+				body: values,
+			})
+
+			toast('Event has been created', {
+				description: response?.message,
+			})
+		} else {
+			const response = await $fetch(`/api/events`, {
+				method: 'PUT',
+				body: { data: values, id: event.id },
+			})
+
+			toast('Event has been updated', {
+				description: response?.message,
+			})
+		}
+
+		navigateTo('/events')
+	} catch (error: any) {}
 })
 
-const deleteEventSubmit = () => {
+const deleteEventSubmit = async () => {
 	try {
-		// await deleteEvent(event.id)
+		const response = await $fetch(`/api/events`, {
+			method: 'DELETE',
+			body: { id: event?.id },
+		})
+
+		toast('Event has been delete', {
+			description: response?.message,
+		})
 		navigateTo('/events')
 	} catch (error) {}
 }
@@ -104,7 +125,13 @@ const deleteEventSubmit = () => {
 		<div class="flex gap-2 justify-end">
 			<AlertDialog v-if="event">
 				<AlertDialogTrigger as-child>
-					<Button class="cursor-pointer hover:scale-105 hover:bg-red-700" variant="destructive"> Delete </Button>
+					<Button
+						class="cursor-pointer hover:scale-105 hover:bg-red-700"
+						variant="destructive"
+						:disabled="form.isSubmitting"
+					>
+						Delete
+					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent>
 					<AlertDialogHeader>
@@ -115,7 +142,11 @@ const deleteEventSubmit = () => {
 					</AlertDialogHeader>
 					<AlertDialogFooter>
 						<AlertDialogCancel>Cancel</AlertDialogCancel>
-						<AlertDialogAction class="bg-red-500 hover:bg-red-700 cursor-pointer" @click="deleteEventSubmit">
+						<AlertDialogAction
+							class="bg-red-500 hover:bg-red-700 cursor-pointer"
+							@click="deleteEventSubmit"
+							:disabled="form.isSubmitting"
+						>
 							Delete
 						</AlertDialogAction>
 					</AlertDialogFooter>
@@ -123,17 +154,17 @@ const deleteEventSubmit = () => {
 			</AlertDialog>
 
 			<!-- Cancel Button - redirects to events list -->
-			<Button type="button" asChild variant="outline">
+			<Button type="button" asChild variant="outline" :disabled="form.isSubmitting">
 				<nuxt-link to="/events">Cancel</nuxt-link>
 			</Button>
 
 			<!-- Save Button - submits the form -->
 			<Button
 				class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"
-				:disabled="!form.meta.value.valid"
+				:disabled="!form.meta.value.valid && form.isSubmitting"
 				type="submit"
 			>
-				Save
+				{{ event ? 'Save Changes' : 'Create Event' }}
 			</Button>
 		</div>
 	</form>
