@@ -1,7 +1,7 @@
-import { EventTable } from '../database/schema'
+import { EventTable } from '../../database/schema'
 
 export default defineEventHandler(async (event) => {
-	const { id } = await readBody(event)
+	const { id, data } = await readBody(event)
 	const { userId } = event.context.auth()
 
 	if (!userId) {
@@ -10,14 +10,15 @@ export default defineEventHandler(async (event) => {
 
 	try {
 		const { rowCount } = await db
-			.delete(EventTable)
+			.update(EventTable)
+			.set(data)
 			.where(and(eq(EventTable.id, id), eq(EventTable.clerkUserId, userId!)))
 
 		if (rowCount === 0) {
 			errorHandler(404, 'Event not found or user not authorized to update this event.')
 		}
 
-		return { message: 'Event deleted', data: null }
+		return { message: 'Event updated successfully', data: data }
 	} catch (error) {
 		console.log(error)
 		errorHandler(500, 'Internal Error.')

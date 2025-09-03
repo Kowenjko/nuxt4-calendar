@@ -1,5 +1,5 @@
-import { EventTable } from '../../server/database/schema'
-import { errorHandler } from '../utils/errorHandler'
+import { EventTable } from '../../../server/database/schema'
+import { errorHandler } from '../../utils/errorHandler'
 
 export default defineEventHandler(async (event) => {
 	const body = await readValidatedBody(event, eventFormSchema.parse)
