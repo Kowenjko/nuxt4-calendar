@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 import { CalendarPlus, CalendarRange } from 'lucide-vue-next'
 
-const { events, getEvents } = useEvents()
+const { events, getEvents, deleteEvent } = useEvents()
 
 definePageMeta({
 	middleware: 'auth',
 })
+
+const deleteEventSubmit = async (id: string) => {
+	await deleteEvent(id)
+	await getEvents()
+}
 
 onMounted(async () => {
 	await getEvents()
@@ -25,7 +30,7 @@ onMounted(async () => {
 			</Button>
 		</div>
 		<div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-10" v-if="events.length > 0">
-			<EventCard v-for="event in events" :key="event.id" :event />
+			<EventCard v-for="event in events" :key="event.id" :event @deleted="deleteEventSubmit" />
 		</div>
 
 		<div v-else class="flex flex-col items-center gap-4">

@@ -10,7 +10,13 @@ interface EventCardProps {
 	}
 }
 
-const props = defineProps<EventCardProps>()
+const emit = defineEmits<{ deleted: [id: string] }>()
+
+const { event } = defineProps<EventCardProps>()
+
+const deleteEventSubmit = async () => {
+	emit('deleted', event.id)
+}
 </script>
 
 <template>
@@ -33,6 +39,7 @@ const props = defineProps<EventCardProps>()
 			<Button class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600" asChild>
 				<nuxt-link :to="`/events/${event.id}/edit`">Edit</nuxt-link>
 			</Button>
+			<DeleteEventButton v-if="event" @deleted="deleteEventSubmit" isIcon />
 		</CardFooter>
 	</Card>
 </template>

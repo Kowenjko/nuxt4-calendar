@@ -94,35 +94,7 @@ const deleteEventSubmit = async () => {
 
 		<!-- Buttons section: Delete, Cancel, Save -->
 		<div class="flex gap-2 justify-end">
-			<AlertDialog v-if="event">
-				<AlertDialogTrigger as-child>
-					<Button
-						class="cursor-pointer hover:scale-105 hover:bg-red-700"
-						variant="destructive"
-						:disabled="form.isSubmitting"
-					>
-						Delete
-					</Button>
-				</AlertDialogTrigger>
-				<AlertDialogContent>
-					<AlertDialogHeader>
-						<AlertDialogTitle>Are you sure?</AlertDialogTitle>
-						<AlertDialogDescription>
-							This action cannot be undone. This will permanently delete this event.
-						</AlertDialogDescription>
-					</AlertDialogHeader>
-					<AlertDialogFooter>
-						<AlertDialogCancel>Cancel</AlertDialogCancel>
-						<AlertDialogAction
-							class="bg-red-500 hover:bg-red-700 cursor-pointer"
-							@click="deleteEventSubmit"
-							:disabled="form.isSubmitting"
-						>
-							Delete
-						</AlertDialogAction>
-					</AlertDialogFooter>
-				</AlertDialogContent>
-			</AlertDialog>
+			<DeleteEventButton v-if="event" @deleted="deleteEventSubmit" />
 
 			<!-- Cancel Button - redirects to events list -->
 			<Button type="button" asChild variant="outline" :disabled="form.isSubmitting">
@@ -132,7 +104,7 @@ const deleteEventSubmit = async () => {
 			<!-- Save Button - submits the form -->
 			<Button
 				class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"
-				:disabled="!form.meta.value.valid && form.isSubmitting"
+				:disabled="form.isSubmitting"
 				type="submit"
 			>
 				{{ event ? 'Save Changes' : 'Create Event' }}
