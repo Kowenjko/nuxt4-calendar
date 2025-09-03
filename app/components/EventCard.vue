@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type event from '~~/server/api/event'
-
 interface EventCardProps {
 	event: {
 		id: string
