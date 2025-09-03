@@ -17,7 +17,7 @@ useHead({
 	<NuxtLayout>
 		<NuxtPage />
 		<ClientOnly>
-			<Toaster />
+			<Toaster theme="dark" />
 		</ClientOnly>
 	</NuxtLayout>
 </template>
