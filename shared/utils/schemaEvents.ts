@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { toTypedSchema } from '@vee-validate/zod'
 
 // Define a validation schema for the event form using Zod
 export const eventFormSchema = z.object({

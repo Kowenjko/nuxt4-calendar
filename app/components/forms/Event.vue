@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
-
 import { toTypedSchema } from '@vee-validate/zod'
 
 interface Props {
