@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Trash2Icon } from 'lucide-vue-next'
 
-const { isIcon = false } = defineProps<{ isIcon?: boolean }>()
+const { isIcon = false, variant = 'destructive' } = defineProps<{ isIcon?: boolean; variant?: any }>()
 
 const emit = defineEmits<{ deleted: [] }>()
 
@@ -11,7 +11,7 @@ const deleteEventSubmit = () => emit('deleted')
 <template>
 	<AlertDialog>
 		<AlertDialogTrigger as-child>
-			<Button class="cursor-pointer hover:scale-105 hover:bg-red-700" variant="destructive">
+			<Button class="cursor-pointer hover:scale-105 hover:bg-red-700" :variant="variant">
 				<Trash2Icon v-if="isIcon" />
 				<span v-else>Delete</span>
 			</Button>

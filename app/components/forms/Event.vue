@@ -102,11 +102,7 @@ const deleteEventSubmit = async () => {
 			</Button>
 
 			<!-- Save Button - submits the form -->
-			<Button
-				class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600"
-				:disabled="form.isSubmitting"
-				type="submit"
-			>
+			<Button class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600" type="submit">
 				{{ event ? 'Save Changes' : 'Create Event' }}
 			</Button>
 		</div>

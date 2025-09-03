@@ -25,7 +25,10 @@ const deleteEventSubmit = async () => {
 		:class="{ 'bg-accent border-accent': event.isActive }"
 	>
 		<CardHeader :class="{ 'opacity-50': event.isActive }">
-			<CardTitle>{{ event.name }}</CardTitle>
+			<CardTitle class="flex justify-between items-center">
+				<span>{{ event.name }}</span>
+				<DeleteEventButton v-if="event" @deleted="deleteEventSubmit" isIcon variant="outline" />
+			</CardTitle>
 			<CardDescription>{{ formatEventDescription(event.durationInMinutes) }} </CardDescription>
 		</CardHeader>
 
@@ -39,7 +42,6 @@ const deleteEventSubmit = async () => {
 			<Button class="cursor-pointer hover:scale-105 bg-blue-400 hover:bg-blue-600" asChild>
 				<nuxt-link :to="`/events/${event.id}/edit`">Edit</nuxt-link>
 			</Button>
-			<DeleteEventButton v-if="event" @deleted="deleteEventSubmit" isIcon />
 		</CardFooter>
 	</Card>
 </template>
