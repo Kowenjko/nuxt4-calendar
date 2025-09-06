@@ -8,7 +8,7 @@ export default defineNuxtConfig({
 	compatibilityDate: '2025-07-15',
 	devtools: { enabled: true },
 	css: ['~/assets/css/main.css', 'vue-sonner/style.css'],
-
+	ssr: false,
 	modules: [
 		'@nuxt/image',
 		// '@prisma/nuxt',
@@ -35,5 +35,11 @@ export default defineNuxtConfig({
 	},
 	vite: {
 		plugins: [tailwindcss()],
+	},
+	runtimeConfig: {
+		clerkSecretKey: process.env.NUXT_CLERK_SECRET_KEY,
+		public: {
+			clerkPublishableKey: process.env.NUXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+		},
 	},
 })
