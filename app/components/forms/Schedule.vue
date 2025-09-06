@@ -38,7 +38,7 @@ const {
 // Group availability fields by day of the week for UI rendering
 const groupedAvailabilityFields = computed(() =>
 	Object.groupBy(
-		availabilityFields.value?.map((field: any, index: any) => ({ ...field, index })),
+		availabilityFields.value?.map((field: any, index: any) => ({ ...field.value, index })),
 		(availability) => availability?.dayOfWeek!
 	)
 )
@@ -87,7 +87,7 @@ const onSubmit = form.handleSubmit(async (values) => {
 						type="button"
 						class="size-6 p-1 cursor-pointer hover:scale-200"
 						variant="outline"
-						@click="addAvailability({ dayOfWeek, startTime: '09:00', endTime: '17:00' })"
+						@click="() => addAvailability({ dayOfWeek, startTime: '09:00', endTime: '17:00' })"
 					>
 						<Plus color="red" />
 					</Button>
